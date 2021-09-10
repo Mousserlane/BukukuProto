@@ -1,0 +1,27 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+      "no-unreachable": 2,
+      "no-console": 1,
+      "eqeqeq": 1,
+      "no-fallthrough": 2,
+      "no-multi-spaces": 1,
+      "no-unused-labels": 2,
+      "no-undef": 2,
+      "no-unused-vars": 2,
+      "no-trailing-spaces": 1,
+      "jsx-quotes": ["warn", "prefer-double"],
+      "quotes": ["warn", "double"],
+      "indent": ["warn", 2],
+      "multiline-ternary": ["error", "always"]
+    }
+  }
