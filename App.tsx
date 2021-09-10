@@ -25,6 +25,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions
 } from "react-native/Libraries/NewAppScreen";
+import { Box } from "./src/components/generic/Box";
 
 type Props = {
   children: ReactNode;
@@ -55,7 +56,6 @@ const Section = ({ children, title }: Props) => {
       >
         {children}
       </Text>
-      <Text>Test format</Text>
     </View>
   );
 };
@@ -93,6 +93,10 @@ const App = () => {
           <Section title="Learn More">
             Read the docs to discover what to do next:
           </Section>
+          <Text>Test format</Text>
+          <Box backgroundColor="red">
+            <Text>Halo</Text>
+          </Box>
           <LearnMoreLinks />
         </View>
       </ScrollView>
