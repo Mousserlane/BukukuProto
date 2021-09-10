@@ -1,5 +1,9 @@
 import React, { ReactNode } from "react";
 import { View, ViewProps } from "react-native";
+import {
+  NativeSafeAreaViewProps,
+  SafeAreaView
+} from "react-native-safe-area-context";
 import { Spaces } from "../../shared.types";
 import { spaces } from "../../styles/styles";
 
@@ -28,9 +32,10 @@ type BoxProps = {
     | "space-around"
     | "space-evenly";
   children: ReactNode;
+  shouldUseSafeArea: boolean;
 };
 
-type Props = Partial<BoxProps> & ViewProps;
+type Props = Partial<BoxProps> & ViewProps & NativeSafeAreaViewProps;
 // TODO : Find a better way to map the spaces so we don't need to define default value
 // or include undefined space
 
@@ -51,9 +56,11 @@ export const Box = (props: Props) => {
     backgroundColor,
     flex = 1,
     direction = "column",
-    justifyContent = "flex-start"
+    justifyContent = "flex-start",
+    shouldUseSafeArea = false
   } = props;
 
+  const ViewComponent = shouldUseSafeArea ? SafeAreaView : View;
   const style = {
     flex,
     ...(px
@@ -74,8 +81,8 @@ export const Box = (props: Props) => {
   };
 
   return (
-    <View {...props} style={[style, props.style]}>
+    <ViewComponent {...props} style={[style, props.style]}>
       {props.children}
-    </View>
+    </ViewComponent>
   );
 };
