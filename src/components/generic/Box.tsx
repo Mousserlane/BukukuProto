@@ -76,7 +76,6 @@ export const Box = (props: Props) => {
   const padding = getPadding({ pl, pt, pr, pb, px, py });
   const margin = getMargin({ ml, mt, mr, mb, mx, my });
 
-  // console.log("padding", padding, margin);
   const style = {
     ...padding,
     ...margin,
