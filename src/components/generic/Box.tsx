@@ -89,7 +89,6 @@ export const Box = (props: Props) => {
     width
   };
 
-  console.log(props.children);
   return (
     <ViewComponent {...props} style={[style, props.style]}>
       {props.children}
