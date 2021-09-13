@@ -4,23 +4,10 @@ import {
   NativeSafeAreaViewProps,
   SafeAreaView
 } from "react-native-safe-area-context";
-import { Spaces } from "../../shared.types";
+import { Margin, Padding, Space, SpacingUnit } from "../../shared.types";
 import { spaces } from "../../styles/styles";
 
-type BoxProps = {
-  // TODO : Fix the spaces type declaration. Find a way to do this with TS utils or something similar
-  pl: Spaces;
-  pt: Spaces;
-  pr: Spaces;
-  pb: Spaces;
-  px: Spaces;
-  py: Spaces;
-  ml: Spaces;
-  mt: Spaces;
-  mr: Spaces;
-  mb: Spaces;
-  mx: Spaces;
-  my: Spaces;
+type BoxProps = Record<SpacingUnit, Space> & {
   flex: number;
   direction: "column" | "row" | "row-reverse" | "column-reverse";
   backgroundColor: string;
@@ -36,23 +23,43 @@ type BoxProps = {
 };
 
 type Props = Partial<BoxProps> & ViewProps & NativeSafeAreaViewProps;
-// TODO : Find a better way to map the spaces so we don't need to define default value
-// or include undefined space
+
+const getPadding = (padding: Padding) => {
+  if (padding.pl) return { paddingLeft: spaces[padding.pl] };
+  if (padding.pt) return { paddingTop: spaces[padding.pt] };
+  if (padding.pr) return { paddingRight: spaces[padding.pr] };
+  if (padding.pb) return { paddingBottom: spaces[padding.pb] };
+  if (padding.px) return { paddingHorizontal: spaces[padding.px] };
+  if (padding.py) return { paddingVertical: spaces[padding.py] };
+
+  return {};
+};
+
+const getMargin = (margin: Margin) => {
+  // TODO : If necessary, find a way to automate this.
+  if (margin.ml) return { marginLeft: spaces[margin.ml] };
+  if (margin.mt) return { marginTop: spaces[margin.mt] };
+  if (margin.mr) return { marginRight: spaces[margin.mr] };
+  if (margin.mb) return { marginBottom: spaces[margin.mb] };
+  if (margin.mx) return { marginHorizontal: spaces[margin.mx] };
+  if (margin.my) return { marginVertical: spaces[margin.my] };
+  return {};
+};
 
 export const Box = (props: Props) => {
   const {
-    pl = "0",
-    pt = "0",
-    pr = "0",
-    pb = "0",
-    px = "0",
-    py = "0",
-    ml = "0",
-    mt = "0",
-    mr = "0",
-    mb = "0",
-    mx = "0",
-    my = "0",
+    pl,
+    pt,
+    pr,
+    pb,
+    px,
+    py,
+    ml,
+    mt,
+    mr,
+    mb,
+    mx,
+    my,
     backgroundColor,
     flex = 1,
     direction = "column",
@@ -61,20 +68,13 @@ export const Box = (props: Props) => {
   } = props;
 
   const ViewComponent = shouldUseSafeArea ? SafeAreaView : View;
+
+  const padding = getPadding({ pl, pt, pr, pb, px, py });
+  const margin = getMargin({ ml, mt, mr, mb, mx, my });
   const style = {
+    ...padding,
+    ...margin,
     flex,
-    ...(px
-      ? { paddingHorizontal: spaces[px] }
-      : { paddingLeft: spaces[pl], paddingRight: spaces[pr] }),
-    ...(py
-      ? { paddingVertical: spaces[py] }
-      : { paddingTop: spaces[pt], paddingBottom: spaces[pb] }),
-    ...(mx
-      ? { marginHorizontal: spaces[mx] }
-      : { marginLeft: spaces[ml], marginRight: spaces[mr] }),
-    ...(my
-      ? { marginVertical: spaces[my] }
-      : { marginTop: spaces[mt], marginBottom: spaces[mb] }),
     flexDirection: direction,
     backgroundColor,
     justifyContent
