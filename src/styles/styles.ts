@@ -1,6 +1,6 @@
-import { Spaces } from "../shared.types";
+import { Space } from "../shared.types";
 
-const spaces: Record<Spaces, number> = {
+const spaces: Record<Space, number> = {
     0: 0,
     1: 2,
     2: 4,
