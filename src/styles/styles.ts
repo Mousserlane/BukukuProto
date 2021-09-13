@@ -20,7 +20,8 @@ const colors = {
     cyan: "#518C99",
     yellow: "#F3D03E",
     lightBlue: "#C4E8F0",
-
+    white: "#FFFFFF",
+    black: "#000000"
 }
 
 export { spaces, colors }
