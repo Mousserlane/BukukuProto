@@ -5,7 +5,9 @@ const WelcomeStack = {
 const AuthStack = {
   LoginScreen: "LoginScreen" as const,
   RegistrationScreen: "RegistrationScreen" as const,
-  ResetPasswordScreen: "ResetPasswordScreen" as const
+  ResetPasswordScreen: "ResetPasswordScreen" as const,
+  EmailRegistrationScreen: "EmailRegistrationScreen" as const,
+  DataRegistrationScreen: "DataRegistrationScreen" as const
 };
 
 const MainStack = {

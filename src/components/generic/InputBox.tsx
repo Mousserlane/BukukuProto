@@ -8,7 +8,7 @@ type Props = TextInputProps & { showBorder?: boolean };
 // TODO : Should a need for form(or more complex use case) arise,
 // please install formik
 export const InputBox = (props: Props) => {
-  const { showBorder = false } = props;
+  const { showBorder = false, style } = props;
   const borderStyle = showBorder
     ? {
         borderTopWidth: 1,
@@ -22,7 +22,7 @@ export const InputBox = (props: Props) => {
   return (
     <TextInput
       {...props}
-      style={[styles.base, borderStyle]}
+      style={[styles.base, borderStyle, style]}
       placeholderTextColor={colors.gray}
     />
   );
