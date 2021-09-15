@@ -1,7 +1,7 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Alert, StyleSheet, Text } from "react-native";
-import { Box, Button, InputBox, Row } from "../components/generic";
+import { Alert, StyleSheet } from "react-native";
+import { Box, Button, InputBox, Row, Text } from "../components/generic";
 import RouteNames from "../RouteNames";
 import { colors, spaces } from "../styles/styles";
 
@@ -37,17 +37,17 @@ const EmailRegistration = ({ navigation }: { navigation: any }) => {
       style={styles.emailRegistration}
       px="7"
     >
-      <Text>Pertama, daftarkan emailmu dan buat password baru.</Text>
+      <Text.H1>Pertama, daftarkan emailmu dan buat password baru.</Text.H1>
       {/* <Box mt="7" /> */}
       <Box width="100%" mt="7" mb="5">
-        <Text style={{}}>Email</Text>
+        <Text.H3>Email</Text.H3>
         <InputBox
           placeholder="Email anda"
           style={{ marginVertical: spaces["3"] }}
         />
       </Box>
       <Box width="100%" mb="7">
-        <Text style={{}}>Password</Text>
+        <Text.H3>Password</Text.H3>
         <InputBox
           placeholder="Password"
           style={{ marginVertical: spaces["3"] }}
@@ -78,17 +78,17 @@ const DataRegistration = () => {
       style={styles.dataRegistration}
       px="7"
     >
-      <Text>Siapa nama panggilan dan usia anakmu?</Text>
+      <Text.H1>Siapa nama panggilan dan usia anakmu?</Text.H1>
       {/* <Box mt="7" /> */}
       <Box width="100%" mt="7" mb="5">
-        <Text style={{}}>Nama</Text>
+        <Text.H3>Nama</Text.H3>
         <InputBox
           placeholder="Nama anak"
           style={{ marginVertical: spaces["3"] }}
         />
       </Box>
       <Box width="100%" mb="7">
-        <Text style={{}}>Umur</Text>
+        <Text.H3>Umur</Text.H3>
         <InputBox
           placeholder="Umur anak"
           style={{ marginVertical: spaces["3"] }}
