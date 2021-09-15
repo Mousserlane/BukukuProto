@@ -8,99 +8,32 @@
 
 import React from "react";
 import type { ReactNode } from "react";
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View
-} from "react-native";
+import { StyleSheet, useColorScheme } from "react-native";
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions
-} from "react-native/Libraries/NewAppScreen";
-import { Box } from "./src/components/generic/Box";
+import booklistMock from "./src/data/booklist_mock.json";
+import { NavigationContainer } from "@react-navigation/native";
+import MainScreens from "./src/screens/MainScreens";
+import AuthenticationScreens from "./src/screens/AuthenticationScreens";
 
 type Props = {
   children: ReactNode;
   title: string;
 };
 
-const Section = ({ children, title }: Props) => {
-  const isDarkMode = useColorScheme() === "dark";
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black
-          }
-        ]}
-      >
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark
-          }
-        ]}
-      >
-        {children}
-      </Text>
-    </View>
-  );
-};
-
 const App = () => {
   const isDarkMode = useColorScheme() === "dark";
+  const { id, title, subtitle, cover_img, age_group, published_date } =
+    booklistMock.books[0];
+  const publishedDate = new Date(published_date);
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter
-  };
-
+  // Should get this from authContext
+  const isAuthenticated = true;
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}
-      >
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white
-          }}
-        >
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <Text>Test format</Text>
-          <Box backgroundColor="red">
-            <Text>Halo</Text>
-          </Box>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      {/* <Stack.Group> */}
+      {isAuthenticated ? <MainScreens /> : <AuthenticationScreens />}
+      {/* </Stack.Group> */}
+    </NavigationContainer>
   );
 };
 
