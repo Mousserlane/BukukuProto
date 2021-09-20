@@ -45,6 +45,7 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
           </Text.Body>
         </Text.Body>
       </Box>
+
       <Box flex={0.2} justifyContent="flex-end">
         <Button type="primary" size="l" block onPress={logIn}>
           Masuk
