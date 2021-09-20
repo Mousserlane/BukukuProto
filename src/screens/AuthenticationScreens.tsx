@@ -9,13 +9,13 @@ const Stack = createNativeStackNavigator();
 
 const AuthenticationScreens = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Group>
-        <Stack.Screen name={RouteNames.LoginScreen} component={LoginScreen} />
         <Stack.Screen
           name={RouteNames.RegistrationScreen}
           component={RegistrationScreen}
         />
+        <Stack.Screen name={RouteNames.LoginScreen} component={LoginScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );
