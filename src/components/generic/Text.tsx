@@ -6,10 +6,15 @@ type Props = {
   children: ReactNode;
   style?: TextStyle;
   color?: string; // TODO : String might not be a good idea
+  onPress?: () => void;
 };
-export const CoreText = ({ children, style, color }: Props) => {
+export const CoreText = ({ children, style, color, onPress }: Props) => {
   // TODO : Style should contain typography.base and style props
-  return <Text style={[typography.base, style]}>{children}</Text>;
+  return (
+    <Text style={[typography.base, style]} onPress={onPress}>
+      {children}
+    </Text>
+  );
 };
 
 CoreText.H1 = (props: Props) => <CoreText {...props} style={typography.h1} />;
