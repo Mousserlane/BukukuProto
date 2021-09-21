@@ -10,6 +10,7 @@ import {
 } from "../components/generic";
 import RouteNames from "../RouteNames";
 import { colors, spaces } from "../styles/styles";
+import { useAuth } from "../context/authContext";
 
 const Stack = createNativeStackNavigator();
 
@@ -81,9 +82,12 @@ const EmailRegistration = ({ navigation }: { navigation: any }) => {
 };
 
 const DataRegistration = ({ navigation }: { navigation: any }) => {
-  const finishRegistration = () => {
-    console.log("Registration finished");
+  const { login } = useAuth();
+  const finishRegistration = async () => {
+    // TODO Should post data to server & then run login function
+    await login();
   };
+
   return (
     <Box flex={1} backgroundColor={colors.warning} py="7" px="7">
       <Row py="7">

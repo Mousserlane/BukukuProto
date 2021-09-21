@@ -1,17 +1,18 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 import RouteNames from "../RouteNames";
 import BookDetailScreen from "./BookDetailScreen";
 import MainTabs from "./MainTabs";
 
 const Stack = createNativeStackNavigator();
 
-const MainScreens = () => {
+const AuthenticatedScreens = () => {
   return (
     <Stack.Navigator>
       <Stack.Group>
         <Stack.Screen
-          name={RouteNames.MainNavigator}
+          name={RouteNames.MainTabs}
           component={MainTabs}
           options={{
             headerShown: false
@@ -26,4 +27,4 @@ const MainScreens = () => {
   );
 };
 
-export default MainScreens;
+export default AuthenticatedScreens;

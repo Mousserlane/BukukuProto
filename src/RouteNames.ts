@@ -13,7 +13,7 @@ const AuthStack = {
 const MainStack = {
   // TODO : MainNavigator refers to the main tab navigator component.
   // Should this be called something else?
-  MainNavigator: "MainNavigator" as const,
+  MainTabs: "MainTabs" as const,
   HomeScreen: "HomeScreen" as const,
   BookmarkScreen: "BookmarkScreen" as const,
   BookDetailScreen: "BookDetailScreen" as const,

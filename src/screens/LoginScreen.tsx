@@ -1,11 +1,13 @@
 import React from "react";
 import { Box, Button, InputBox, Text } from "../components/generic";
+import { useAuth } from "../context/authContext";
 import RouteNames from "../RouteNames";
 import { colors, spaces } from "../styles/styles";
 
 const LoginScreen = ({ navigation }: { navigation: any }) => {
-  const logIn = () => {
-    navigation.navigate(RouteNames.MainNavigator);
+  const { login } = useAuth();
+  const logIn = async () => {
+    await login();
   };
 
   const navigateToRegistrationScreen = () => {
