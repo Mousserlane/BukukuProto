@@ -8,7 +8,6 @@ import AuthenticationScreens from "./AuthenticationScreens";
 const MainNavigator = () => {
   const { isCheckingAuthState, isAuthenticated } = useAuth();
 
-  console.log("is checking auth", isCheckingAuthState);
   if (isCheckingAuthState) return <SplashScreen />;
 
   return (
