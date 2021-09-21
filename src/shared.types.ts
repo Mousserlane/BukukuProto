@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-export type Space = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7"
+export type Space = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7";
 export type SpacingUnit =
   | "pl"
   | "pt"
@@ -15,9 +15,8 @@ export type SpacingUnit =
   | "mx"
   | "my";
 
-
 export type Padding = Record<
-Extract<SpacingUnit, "pl" | "pt" | "pr" | "pb" | "px" | "py">,
+  Extract<SpacingUnit, "pl" | "pt" | "pr" | "pb" | "px" | "py">,
   Space | undefined
 >;
 
@@ -43,4 +42,27 @@ export type BoxProps = Record<SpacingUnit, Space> & {
   flexWrap: "nowrap" | "wrap" | "wrap-reverse";
   height: number;
   width: number | string;
+};
+
+export type AgeGroup = "8-12" | "4-7" | "0-4";
+
+export interface Book {
+  id: string;
+  title: string;
+  subtitle?: string;
+  cover_img?: string;
+  age_group: AgeGroup;
+  published_date: Date;
+}
+
+export interface BookDetail extends Book {
+  author: string;
+  rating: number;
+  description: string;
+  tags?: string[];
+}
+
+export type BookList = {
+  age_group: AgeGroup;
+  books: Book[];
 };

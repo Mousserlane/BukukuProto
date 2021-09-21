@@ -5,7 +5,8 @@ import { Box } from "./generic";
 interface CardProps {
   id: string;
   title: string;
-  coverImage: string;
+  // TODO : Need fallback cover image
+  coverImage?: string;
   publishedDate: Date;
   subtitle?: string;
   ageGroup?: string;

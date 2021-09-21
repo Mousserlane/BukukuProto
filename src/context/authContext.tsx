@@ -45,7 +45,7 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     const checkAuthentication = async () => {
       // TODO : Should have a token expiry checker hooks.
       const isTokenExpired = false;
-      const isUserExist = false;
+      const isUserExist = true;
       if (isTokenExpired || !isUserExist) {
         // TODO : Should delete user data & navigate back to Auth screen
         setAuthValue({

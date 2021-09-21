@@ -8,7 +8,7 @@ const Tab = createBottomTabNavigator();
 
 const MainNavigator = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen name={RouteNames.HomeScreen} component={HomeScreen} />
       <Tab.Screen name={RouteNames.BookmarkScreen} component={BookmarkScreen} />
     </Tab.Navigator>
