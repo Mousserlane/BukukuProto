@@ -21,6 +21,7 @@ const AuthenticatedScreens = () => {
         <Stack.Screen
           component={BookDetailScreen}
           name={RouteNames.BookDetailScreen}
+          options={{ headerShown: false }}
           //   options={{
           //     headerShown: false
           //   }}

@@ -1,6 +1,7 @@
 import React from "react";
-import { Image, Text, TouchableOpacity } from "react-native";
-import { Box } from "./generic";
+import { Image, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import RouteNames from "../RouteNames";
 
 interface CardProps {
   id: string;
@@ -13,10 +14,18 @@ interface CardProps {
 }
 
 export const Card = (props: CardProps) => {
-  const { id, title, coverImage } = props;
+  const { id, title, coverImage, subtitle } = props;
+  console.log("subtitle", subtitle);
+  const navigation = useNavigation<any>();
+
   const navigateToDetail = () => {
-    // TODO : Add navigation
-    // navigation.navigate(RouteNames.bookDetail, {id, title, subtitle, coverImage, ageGroup})
+    navigation.navigate(RouteNames.BookDetailScreen, {
+      id,
+      title,
+      coverImage,
+      subtitle
+    });
+    // navigation.navigate(RouteNames.BookDetailScreen, {id, title, subtitle, coverImage, ageGroup})
   };
 
   return (
