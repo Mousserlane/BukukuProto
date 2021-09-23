@@ -15,7 +15,6 @@ interface CardProps {
 
 export const Card = (props: CardProps) => {
   const { id, title, coverImage, subtitle } = props;
-  console.log("subtitle", subtitle);
   const navigation = useNavigation<any>();
 
   const navigateToDetail = () => {
