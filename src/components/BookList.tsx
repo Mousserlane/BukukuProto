@@ -1,28 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { FlatList } from "react-native";
-import { AgeGroup, BookList as BookListType } from "../shared.types";
+import { AgeGroup, Book, BookList as BookListType } from "../shared.types";
 import { Books } from "./Books";
 import { Box, Text } from "./generic";
-import { bookListMock } from "../data/booklist_mock";
-import { colors } from "../styles/styles";
 
-type Props = {
+type Props<T, U> = {
   bookList: BookListType[];
 };
-
-export const BookList = (props: any) => {
+export const BookList = (props: Props<AgeGroup, any[]>) => {
   const { bookList } = props;
-  const [_bookList, setBookList] = useState(bookList);
 
-  // TODO : Need to fix the type mismatch
-  const renderList = ({ item }: { item: any }) => (
+  const renderList = ({ item }: { item: BookListType }) => (
     <Box mt="6">
       <Text.H3 ml="2" mb="4">
-        USIA {item.age_group}
+        USIA {item.ageGroup}
       </Text.H3>
       <Books books={item.books} />
     </Box>
   );
 
-  return <FlatList data={bookListMock} renderItem={renderList} />;
+  return <FlatList data={bookList} renderItem={renderList} />;
 };

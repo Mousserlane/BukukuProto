@@ -50,9 +50,9 @@ export interface Book {
   id: string;
   title: string;
   subtitle?: string;
-  cover_img?: string;
-  age_group: AgeGroup;
-  published_date: Date;
+  coverImg?: string;
+  ageGroup: AgeGroup;
+  publishedDate: Date;
 }
 
 export interface BookDetail extends Book {
@@ -63,6 +63,6 @@ export interface BookDetail extends Book {
 }
 
 export type BookList = {
-  age_group: AgeGroup;
+  ageGroup: AgeGroup;
   books: Book[];
 };

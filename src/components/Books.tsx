@@ -4,11 +4,11 @@ import { Book } from "../shared.types";
 import { Card } from "./Card";
 import { Box } from "./generic";
 
-type Props = {
-  books: Book[];
+type Props<T> = {
+  books: T[];
 };
 
-export const Books = (props: Props) => {
+export const Books = (props: Props<any>) => {
   const { books } = props;
 
   const renderCard = ({ item }: { item: Book }) => (
@@ -16,8 +16,9 @@ export const Books = (props: Props) => {
       <Card
         id={item.id}
         title={item.title}
-        coverImage={item.cover_img}
-        publishedDate={item.published_date}
+        coverImage={item.coverImg}
+        publishedDate={item.publishedDate}
+        subtitle={item.subtitle}
       />
     </Box>
   );
