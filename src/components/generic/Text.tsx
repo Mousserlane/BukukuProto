@@ -21,12 +21,12 @@ export const CoreText = ({
   style,
   color,
   onPress
-}: Props) => {
+}: Props): React.ReactElement => {
   // TODO : Style should contain typography.base and style props
   const margin = getMargin({ ml, mt, mr, mb, mx, my });
 
   return (
-    <Text style={[typography.base, style, margin]} onPress={onPress}>
+    <Text style={[typography.base, style, margin, color]} onPress={onPress}>
       {children}
     </Text>
   );
@@ -34,8 +34,10 @@ export const CoreText = ({
 
 CoreText.H1 = (props: Props) => <CoreText {...props} style={typography.h1} />;
 CoreText.H3 = (props: Props) => <CoreText {...props} style={typography.h3} />;
+CoreText.Caption = (props: Props) => <CoreText {...props} style={typography.caption} />
 CoreText.Body = (props: Props) => (
   <CoreText {...props} style={typography.body} />
 );
+CoreText.Remarks = (props: Props) => (<CoreText {...props} style={typography.remarks} />)
 
 export default CoreText;

@@ -22,9 +22,6 @@ const AuthenticatedScreens = () => {
           component={BookDetailScreen}
           name={RouteNames.BookDetailScreen}
           options={{ headerShown: false }}
-          //   options={{
-          //     headerShown: false
-          //   }}
         />
       </Stack.Group>
     </Stack.Navigator>

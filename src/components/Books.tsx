@@ -19,6 +19,7 @@ export const Books = (props: Props<any>) => {
         coverImage={item.coverImg}
         publishedDate={item.publishedDate}
         subtitle={item.subtitle}
+        ageGroup={item.ageGroup}
       />
     </Box>
   );

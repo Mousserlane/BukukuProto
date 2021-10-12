@@ -25,7 +25,10 @@ export const Button = (props: Props) => {
   const { type, ellipseButton, children, size = "m", block = false } = props;
 
   const buttonColor = colors[type];
-  const radiusStrength = ellipseButton ? ELLIPSE_RADIUS : REGULAR_RADIUS;
+  const radiusStrength = ellipseButton ?
+    ELLIPSE_RADIUS
+    : REGULAR_RADIUS;
+
   const paddingSize = {
     s: { px: 16, py: 11 },
     m: { px: 24, py: 12 },

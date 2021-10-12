@@ -14,7 +14,7 @@ interface CardProps {
 }
 
 export const Card = (props: CardProps) => {
-  const { id, title, coverImage, subtitle } = props;
+  const { id, title, coverImage, subtitle, ageGroup } = props;
   const navigation = useNavigation<any>();
 
   const navigateToDetail = () => {
@@ -22,7 +22,8 @@ export const Card = (props: CardProps) => {
       id,
       title,
       coverImage,
-      subtitle
+      subtitle,
+      ageGroup
     });
     // navigation.navigate(RouteNames.BookDetailScreen, {id, title, subtitle, coverImage, ageGroup})
   };

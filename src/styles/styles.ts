@@ -22,7 +22,8 @@ const colors = {
   lightBlue: "#C4E8F0",
   white: "#FFFFFF",
   black: "#000000",
-  gray: "#B2B6B8"
+  gray: "#B2B6B8",
+  orange: "#ED5950"
 };
 
 const typography = {
@@ -41,10 +42,20 @@ const typography = {
     fontSize: 18,
     lineHeight: 22.5
   },
+  caption: {
+    fontWeight: "700",
+    fontSize: 14,
+    lineHeight: 17.5,
+  },
   body: {
     fontWeight: "600",
     fontSize: 12,
     lineHeight: 16.9
+  },
+  remarks: {
+    fontWeight: "700",
+    fontSize: 10,
+    lineHeight: 12.5
   }
 } as const;
 
