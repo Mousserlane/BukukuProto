@@ -55,7 +55,18 @@ export interface Book {
   publishedDate: Date;
 }
 
-export interface BookDetail extends Book {
+export interface RawBookDetail {
+  id: string;
+  title: string;
+  subtitle: string;
+  author: string;
+  rating: number;
+  cover_img: string;
+  age_group: string;
+  tags: string[];
+  description: string;
+}
+export interface BookDetail extends Omit<Book, "publishedDate"> {
   author: string;
   rating: number;
   description: string;

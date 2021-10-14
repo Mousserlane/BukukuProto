@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FlatList } from "react-native";
-import { AgeGroup, Book, BookList as BookListType } from "../shared.types";
+import { BookList as BookListType } from "../shared.types";
 import { Books } from "./Books";
 import { Box, Text } from "./generic";
 
-type Props<T, U> = {
+type Props = {
   bookList: BookListType[];
 };
-export const BookList = (props: Props<AgeGroup, any[]>) => {
+export const BookList = (props: Props) => {
   const { bookList } = props;
 
   const renderList = ({ item }: { item: BookListType }) => (

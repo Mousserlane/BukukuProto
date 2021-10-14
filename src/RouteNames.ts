@@ -17,7 +17,8 @@ const MainStack = {
   HomeScreen: "HomeScreen" as const,
   BookmarkScreen: "BookmarkScreen" as const,
   BookDetailScreen: "BookDetailScreen" as const,
-  ReaderScreen: "ReaderScreen" as const
+  ReaderScreen: "ReaderScreen" as const,
+  NotFound: "NotFound" as const
 };
 
 export default {

@@ -8,7 +8,7 @@ import { useBookList } from "../hooks/useBookList";
 // Instead of getting the navigation object from hooks,
 // it is passed in to every screen component.
 // Read https://reactnavigation.org/docs/navigating
-const HomeScreen = ({ navigation }: { navigation: any }) => {
+const HomeScreen = () => {
   const booklist = useBookList();
 
   return (
