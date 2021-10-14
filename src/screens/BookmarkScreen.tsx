@@ -1,11 +1,16 @@
 import React from "react";
-import { Text } from "react-native";
-import { Box } from "../components/generic";
+import { BookmarkedList } from "../components/BookmarkedList";
+import { Box, Text } from "../components/generic";
+import { useBookmarkedItems } from "../hooks/useBookmarkedList";
+import { colors } from "../styles/styles";
 
 const BookmarkScreen = () => {
+  const booklist = useBookmarkedItems();
+
   return (
-    <Box flex={1} justifyContent="center" alignItems="center">
-      <Text>Hello from bookmark screen</Text>
+    <Box useSafeArea flex={1} px="7" backgroundColor={colors.accent}>
+      <Text.H1 mt="4">Daftar Bacaan</Text.H1>
+      <BookmarkedList bookList={booklist} />
     </Box>
   );
 };

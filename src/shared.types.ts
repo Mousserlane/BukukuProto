@@ -46,13 +46,13 @@ export type BoxProps = Record<SpacingUnit, Space> & {
 
 export type AgeGroup = "8-12" | "4-7" | "0-4";
 
-export interface Book {
+export interface RawBook {
   id: string;
   title: string;
   subtitle?: string;
-  coverImg?: string;
-  ageGroup: AgeGroup;
-  publishedDate: Date;
+  cover_img?: string;
+  age_group: AgeGroup;
+  published_date: Date;
 }
 
 export interface RawBookDetail {
@@ -66,6 +66,16 @@ export interface RawBookDetail {
   tags: string[];
   description: string;
 }
+
+export interface Book {
+  id: string;
+  title: string;
+  subtitle?: string;
+  coverImg?: string;
+  ageGroup: AgeGroup;
+  publishedDate: Date;
+}
+
 export interface BookDetail extends Omit<Book, "publishedDate"> {
   author: string;
   rating: number;

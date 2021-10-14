@@ -7,6 +7,7 @@ import { Box, Text } from "./generic";
 type Props = {
   bookList: BookListType[];
 };
+
 export const BookList = (props: Props) => {
   const { bookList } = props;
 
