@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   Box,
@@ -11,29 +11,53 @@ import {
 import RouteNames from "../RouteNames";
 import { colors, spaces } from "../styles/styles";
 import { useAuth } from "../context/authContext";
+import {
+  RegistrationContext,
+  useRegistrationCtx,
+  AllowedFields
+} from "../context/registrationContext";
 
 const Stack = createNativeStackNavigator();
 
 const RegistrationScreen = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Group>
-        <Stack.Screen
-          name={RouteNames.EmailRegistrationScreen}
-          component={EmailRegistration}
-        />
-        <Stack.Screen
-          name={RouteNames.DataRegistrationScreen}
-          component={DataRegistration}
-        />
-      </Stack.Group>
-    </Stack.Navigator>
+    <RegistrationContext>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Group>
+          <Stack.Screen
+            name={RouteNames.EmailRegistrationScreen}
+            component={EmailRegistration}
+          />
+          <Stack.Screen
+            name={RouteNames.DataRegistrationScreen}
+            component={DataRegistration}
+          />
+        </Stack.Group>
+      </Stack.Navigator>
+    </RegistrationContext>
   );
 };
 
 // TODO : Should we move these to a component file??
 const EmailRegistration = ({ navigation }: { navigation: any }) => {
+  const { setAuthData } = useRegistrationCtx();
+
+  const [basicUserData, setBasicUserData] = useState<{
+    email: string;
+    password: string;
+  }>({ email: "", password: "" });
+
+  const setData = (text: string, field: AllowedFields) => {
+    setBasicUserData((prevState) => ({
+      ...prevState,
+      [field]: text
+    }));
+  };
+
+  // TODO : Add data verification
+
   const navigateToDataRegistration = () => {
+    setAuthData(basicUserData);
     navigation.navigate(RouteNames.DataRegistrationScreen);
   };
 
@@ -50,6 +74,7 @@ const EmailRegistration = ({ navigation }: { navigation: any }) => {
         <InputBox
           placeholder="Email anda"
           style={{ marginVertical: spaces["3"] }}
+          onChangeText={(text) => setData(text, "email")}
         />
 
         <Text.H3 mt="5">Password</Text.H3>
@@ -57,6 +82,7 @@ const EmailRegistration = ({ navigation }: { navigation: any }) => {
           placeholder="Password"
           style={{ marginVertical: spaces["3"] }}
           secureTextEntry
+          onChangeText={(text) => setData(text, "password")}
         />
 
         <Text.Body>
@@ -82,10 +108,24 @@ const EmailRegistration = ({ navigation }: { navigation: any }) => {
 };
 
 const DataRegistration = ({ navigation }: { navigation: any }) => {
-  const { login } = useAuth();
+  const { register, isAuthenticating } = useAuth();
+  const { authData } = useRegistrationCtx();
+  // const [userChildData, setUserChilData] = useState<{
+  //   email: string;
+  //   password: string;
+  // }>({ email: "", password: "" });
+  // const setData = (text: string, field: AllowedFields) => {
+  //   setUserChilData((prevState) => ({
+  //     ...prevState,
+  //     [field]: text
+  //   }));
+  // };
+
+  // TODO : Add verification
+
   const finishRegistration = async () => {
     // TODO Should post data to server & then run login function
-    await login();
+    register(authData.email, authData.password);
   };
 
   return (
@@ -113,7 +153,7 @@ const DataRegistration = ({ navigation }: { navigation: any }) => {
 
       <Box flex={0.2} justifyContent="flex-end">
         <Button type="secondary" size="l" block onPress={finishRegistration}>
-          REGISTRASI
+          {isAuthenticating ? "REGISTRASI" : "Mohon Tunggu"}
         </Button>
       </Box>
     </Box>

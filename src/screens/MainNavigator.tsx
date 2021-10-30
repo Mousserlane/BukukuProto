@@ -6,9 +6,9 @@ import AuthenticatedScreens from "./AuthenticatedScreens";
 import AuthenticationScreens from "./AuthenticationScreens";
 
 const MainNavigator = () => {
-  const { isCheckingAuthState, isAuthenticated } = useAuth();
+  const { isInitializing, isAuthenticated } = useAuth();
 
-  if (isCheckingAuthState) return <SplashScreen />;
+  if (isInitializing) return <SplashScreen />;
 
   return (
     <NavigationContainer>
