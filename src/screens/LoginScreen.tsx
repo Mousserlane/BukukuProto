@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, InputBox, Text } from "../components/generic";
+import { Box, Button, InputBox, Text, Row } from "../components/generic";
 import { useAuth } from "../context/authContext";
 import RouteNames from "../RouteNames";
 import { colors, spaces } from "../styles/styles";
@@ -12,6 +12,10 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
 
   const navigateToRegistrationScreen = () => {
     navigation.navigate(RouteNames.RegistrationScreen);
+  };
+
+  const navigateToResetPassword = () => {
+    navigation.navigate(RouteNames.ResetPasswordScreen);
   };
 
   return (
@@ -29,7 +33,12 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
         </Box>
 
         <Box width="100%">
-          <Text.H3>Password</Text.H3>
+          <Row alignItems="center" justifyContent="space-between">
+            <Text.H3>Password</Text.H3>
+            <Text.Remarks onPress={navigateToResetPassword}>
+              Lupa password?
+            </Text.Remarks>
+          </Row>
           <InputBox
             placeholder="Password"
             style={{ marginVertical: spaces["3"] }}
