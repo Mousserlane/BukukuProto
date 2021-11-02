@@ -18,6 +18,7 @@ const MainStack = {
   BookmarkScreen: "BookmarkScreen" as const,
   BookDetailScreen: "BookDetailScreen" as const,
   ReaderScreen: "ReaderScreen" as const,
+  SettingsScreen: "SettingsScreen" as const,
   NotFound: "NotFound" as const
 };
 
