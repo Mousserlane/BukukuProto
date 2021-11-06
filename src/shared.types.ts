@@ -87,3 +87,8 @@ export type BookList = {
   ageGroup: AgeGroup;
   books: Book[];
 };
+
+export interface UserData {
+  childName: string;
+  childAge: number;
+}

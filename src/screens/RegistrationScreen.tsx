@@ -16,6 +16,7 @@ import {
   useRegistrationCtx,
   AllowedFields
 } from "../context/registrationContext";
+import { UserData } from "../shared.types";
 
 const Stack = createNativeStackNavigator();
 
@@ -110,22 +111,24 @@ const EmailRegistration = ({ navigation }: { navigation: any }) => {
 const DataRegistration = ({ navigation }: { navigation: any }) => {
   const { register, isAuthenticating } = useAuth();
   const { authData } = useRegistrationCtx();
-  // const [userChildData, setUserChilData] = useState<{
-  //   email: string;
-  //   password: string;
-  // }>({ email: "", password: "" });
-  // const setData = (text: string, field: AllowedFields) => {
-  //   setUserChilData((prevState) => ({
-  //     ...prevState,
-  //     [field]: text
-  //   }));
-  // };
+
+  const [userChildData, setUserChilData] = useState<UserData>({
+    childName: "",
+    childAge: 0
+  });
+
+  const setData = (text: string, field: AllowedFields) => {
+    setUserChilData((prevState) => ({
+      ...prevState,
+      [field]: text
+    }));
+  };
 
   // TODO : Add verification
 
   const finishRegistration = async () => {
     // TODO Should post data to server & then run login function
-    register(authData.email, authData.password);
+    register(authData.email, authData.password, userChildData);
   };
 
   return (
@@ -142,18 +145,20 @@ const DataRegistration = ({ navigation }: { navigation: any }) => {
         <InputBox
           placeholder="Nama anak"
           style={{ marginVertical: spaces["3"] }}
+          onChangeText={(text) => setData(text, "childName")}
         />
         <Text.H3 mt="5">Umur</Text.H3>
         <InputBox
           placeholder="Umur anak"
           style={{ marginVertical: spaces["3"] }}
           keyboardType="number-pad"
+          onChangeText={(text) => setData(text, "childAge")}
         />
       </Box>
 
       <Box flex={0.2} justifyContent="flex-end">
         <Button type="secondary" size="l" block onPress={finishRegistration}>
-          {isAuthenticating ? "REGISTRASI" : "Mohon Tunggu"}
+          {!isAuthenticating ? "REGISTRASI" : "Mohon Tunggu"}
         </Button>
       </Box>
     </Box>
