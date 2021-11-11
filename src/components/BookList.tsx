@@ -20,5 +20,11 @@ export const BookList = (props: Props) => {
     </Box>
   );
 
-  return <FlatList data={bookList} renderItem={renderList} />;
+  return (
+    <FlatList
+      data={bookList}
+      renderItem={renderList}
+      keyExtractor={(item, index) => `${item.ageGroup}_${index}`}
+    />
+  );
 };

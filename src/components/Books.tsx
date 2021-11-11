@@ -24,5 +24,12 @@ export const Books = (props: Props<any>) => {
     </Box>
   );
 
-  return <FlatList horizontal data={books} renderItem={renderCard} />;
+  return (
+    <FlatList
+      horizontal
+      data={books}
+      renderItem={renderCard}
+      keyExtractor={(item, index) => `${item.id}_${index}`}
+    />
+  );
 };

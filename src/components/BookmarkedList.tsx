@@ -25,5 +25,12 @@ export const BookmarkedList = (props: Props) => {
     </Box>
   );
 
-  return <FlatList data={bookList} renderItem={renderList} numColumns={2} />;
+  return (
+    <FlatList
+      data={bookList}
+      renderItem={renderList}
+      numColumns={2}
+      keyExtractor={(item, index) => `${item.id}_${index}`}
+    />
+  );
 };
