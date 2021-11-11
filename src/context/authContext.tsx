@@ -11,6 +11,7 @@ import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
 
 import { UserData } from "../shared.types";
 import { useDatabase } from "./appSetup";
+import { Alert } from "react-native";
 
 type User = FirebaseAuthTypes.User | null;
 interface Auth {
@@ -18,7 +19,7 @@ interface Auth {
   isInitializing: boolean;
   isAuthenticating: boolean;
   user: User;
-  login: () => void;
+  login: (email: string, password: string) => void;
   logout: () => void;
   register: (email: string, password: string, userData: UserData) => void;
 }
@@ -28,7 +29,7 @@ const value: Auth = {
   isInitializing: true,
   isAuthenticating: false,
   user: null,
-  login: () => {
+  login: (email, password) => {
     /** function init */
   },
   logout: () => {
@@ -44,7 +45,7 @@ const AuthContext = createContext(value);
 const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [_value, setAuthValue] = useState(value);
   const database = useDatabase();
-  const listenToAuthStateChange = (user: User) => {
+  const listenToAuthStateChange = async (user: User) => {
     if (_value.isInitializing) {
       setAuthValue((prevValue) => ({
         ...prevValue,
@@ -52,7 +53,9 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       }));
     }
 
-    if (user) {
+    const hasToken = !!user?.getIdToken();
+
+    if (hasToken) {
       setAuthValue((prevValue) => ({
         ...prevValue,
         user,
@@ -66,12 +69,23 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     return subscriber;
   }, []);
 
-  const login = async () => {
-    // TODO Should dispatch user data to persistent storage or redux or etc...
-    setAuthValue((prevValue) => ({
-      ...prevValue,
-      isAuthenticated: true
-    }));
+  const login = async (email: string, password: string) => {
+    setAuthValue((prevValue) => ({ ...prevValue, isAuthenticating: true }));
+    try {
+      const _auth = await auth().signInWithEmailAndPassword(email, password);
+      if (_auth) {
+        // TODO Should dispatch user data to persistent storage or redux or etc...
+        setAuthValue((prevValue) => ({
+          ...prevValue,
+          user: _auth.user,
+          isAuthenticated: true
+        }));
+      }
+    } catch (error) {
+      Alert.alert("Error while logging in, please try again");
+    } finally {
+      setAuthValue((prevValue) => ({ ...prevValue, isAuthenticating: false }));
+    }
   };
 
   const logout = async () => {

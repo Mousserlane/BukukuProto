@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Button, InputBox, Text, Row } from "../components/generic";
 import { useAuth } from "../context/authContext";
 import RouteNames from "../RouteNames";
 import { colors, spaces } from "../styles/styles";
 
 const LoginScreen = ({ navigation }: { navigation: any }) => {
-  const { login } = useAuth();
+  const { login, isAuthenticating } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const logIn = async () => {
-    await login();
+    // NOTE : navigation will be handled by auth listener
+    login(email, password);
   };
 
   const navigateToRegistrationScreen = () => {
@@ -29,6 +32,7 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
           <InputBox
             placeholder="Email anda"
             style={{ marginVertical: spaces["3"] }}
+            onChangeText={setEmail}
           />
         </Box>
 
@@ -43,6 +47,7 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
             placeholder="Password"
             style={{ marginVertical: spaces["3"] }}
             secureTextEntry
+            onChangeText={setPassword}
           />
         </Box>
 
@@ -59,7 +64,7 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
 
       <Box flex={0.2} justifyContent="flex-end">
         <Button type="primary" size="l" block onPress={logIn}>
-          Masuk
+          {isAuthenticating ? "Memproses" : "Masuk"}
         </Button>
       </Box>
     </Box>
